@@ -1,0 +1,15 @@
+{
+  "name": "@clinic/auth",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": { "typecheck": "tsc --noEmit" },
+  "dependencies": {
+    "@clinic/core": "workspace:*",
+    "@clinic/data": "workspace:*",
+    "@clinic/infra": "workspace:*",
+    "firebase-admin": "^12.5.0"
+  }
+}
