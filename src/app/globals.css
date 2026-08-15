@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+
+  /* Numbers — queue numbers, amounts, invoice numbers — always tabular so
+     columns line up and a changing figure doesn't shift the layout. */
+  .num {
+    @apply font-mono tabular-nums tracking-tight;
+    font-feature-settings: 'tnum' 1;
+  }
+
+  :focus-visible {
+    outline: 2px solid #146b4e;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* ── Signature element ────────────────────────────────────────────────
+     The appointment card. A clinic's real artifact is the paper slip with a
+     queue number on it, so the booking confirmation and the reception queue
+     screen both use the same object: a punched card with a torn lower edge.
+     It is the one place the design is allowed to be loud. */
+  .queue-card {
+    @apply relative bg-paper-card rounded-card shadow-card overflow-hidden;
+    border: 1px solid theme('colors.edge.DEFAULT');
+  }
+
+  .queue-card::before {
+    content: '';
+    @apply absolute top-0 bottom-0 w-1;
+    inset-inline-start: 0;
+    background: theme('colors.clinic.DEFAULT');
+  }
+
+  /* Torn perforation along the bottom edge. */
+  .queue-card::after {
+    content: '';
+    @apply absolute inset-x-0 bottom-0 h-2;
+    background-image: radial-gradient(
+      circle at 6px 8px,
+      theme('colors.paper.DEFAULT') 4px,
+      transparent 4.5px
+    );
+    background-size: 12px 12px;
+    background-repeat: repeat-x;
+  }
+
+  .queue-card[data-state='waiting']::before {
+    background: theme('colors.signal.DEFAULT');
+  }
+  .queue-card[data-state='completed']::before {
+    background: theme('colors.edge.strong');
+  }
+
+  .eyebrow {
+    @apply text-eyebrow uppercase text-ink-faint font-medium;
+  }
+
+  .hairline {
+    @apply border-t border-edge;
+  }
+}

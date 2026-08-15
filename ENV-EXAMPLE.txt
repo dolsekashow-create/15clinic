@@ -1,0 +1,35 @@
+# ─────────────────────────────────────────────────────────────
+# Copy to .env.local and fill in. NEVER commit a filled file.
+# ─────────────────────────────────────────────────────────────
+
+NODE_ENV=development
+APP_ENV=development           # development | staging | production
+APP_URL=http://localhost:3000
+
+# ── Firebase client (safe to expose to the browser) ──────────
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+
+# ── Firebase Admin (SERVER ONLY — never prefix with NEXT_PUBLIC_) ──
+FIREBASE_PROJECT_ID=
+FIREBASE_CLIENT_EMAIL=
+# Paste the whole key on one line, keeping the literal \n sequences.
+FIREBASE_PRIVATE_KEY=
+FIREBASE_STORAGE_BUCKET=
+
+# ── Session ──────────────────────────────────────────────────
+SESSION_COOKIE_NAME=clinic_session
+SESSION_EXPIRES_DAYS=5
+
+# ── Seeding (development only) ───────────────────────────────
+SEED_ORGANIZATION_NAME=شركة العيادات
+SEED_SUPER_ADMIN_EMAIL=
+SEED_SUPER_ADMIN_PASSWORD=
+
+# ── Notifications — DECISION_PENDING, no provider wired yet ──
+# SMS_PROVIDER_API_KEY=
+# WHATSAPP_PROVIDER_TOKEN=

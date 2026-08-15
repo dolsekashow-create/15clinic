@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# The dashboard is behind authentication, but keep it out of search results too.
+Disallow: /dashboard
+Disallow: /api
+Disallow: /login
