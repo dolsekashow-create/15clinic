@@ -1,0 +1,34 @@
+# Alternative to Docker: run the standalone build directly under systemd.
+# /etc/systemd/system/clinic.service
+
+[Unit]
+Description=Clinic Platform (Next.js)
+After=network.target
+
+[Service]
+Type=simple
+User=clinic
+Group=clinic
+WorkingDirectory=/srv/clinic
+Environment=NODE_ENV=production
+Environment=PORT=3000
+Environment=HOSTNAME=127.0.0.1
+# Secrets live in a root-owned file readable only by the service user.
+EnvironmentFile=/etc/clinic/env
+ExecStart=/usr/bin/node apps/web/server.js
+Restart=on-failure
+RestartSec=5
+
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/clinic/.next/cache
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target
